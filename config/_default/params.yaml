@@ -9,8 +9,10 @@ version: v0.11
 url_latest_version: https://projectcapsule.dev
 archived_version: true
 versions:
-- version: v0.13
+- version: v0.99
   url: https://projectcapsule.dev
+- version: v0.13
+  url: https://release-0-13.projectcapsule.dev
 - version: v0.12
   url: https://release-0-12.projectcapsule.dev
 - version: v0.11
