@@ -5,7 +5,6 @@ description: >
   Configure policies and restrictions on a per-Tenant basis with Rules
 aliases:
   - /docs/tenants/rules/permissions/
-  - /docs/tenants/rules/
 ---
 
 Declare permission distribution rules for the selected namespaces.

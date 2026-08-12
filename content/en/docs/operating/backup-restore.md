@@ -27,7 +27,7 @@ Create a backup of the tenant `solar`. It consists in two different backups:
 * backup of the tenant resource
 * backup of all the resources belonging to the tenant
 
-To backup the wind tenant selectively, label the tenant as:
+To back up the solar tenant selectively, label the tenant as:
 
 ```bash
 kubectl label tenant wind capsule.clastix.io/tenant=solar
@@ -65,7 +65,7 @@ spec:
   ttl: 720h0m0s
 ```
 
-Create a backup of all the resources belonging to the wind tenant namespaces:
+Create a backup of all the resources belonging to the solar tenant namespaces:
 
 ```bash
 velero create backup solar-namespaces \
@@ -117,7 +117,7 @@ solar    active   9                 0 # <<<           {"pool":"solar"}    54m
 To avoid this problem you can use the script [velero-restore.sh](https://github.com/projectcapsule/capsule/blob/main/hack/velero-restore.sh) located under the hack/ folder:
 
 ```bash
-./velero-restore.sh --kubeconfing /path/to/your/kubeconfig --tenant "wind" restore
+./velero-restore.sh --kubeconfig /path/to/your/kubeconfig --tenant "wind" restore
 ```
 
 Running this command, we are going to patch the tenant's namespaces manifests that are actually ownerReferences-less. Once the command has finished its run, you got the tenant back.

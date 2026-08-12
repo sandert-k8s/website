@@ -49,7 +49,7 @@ It then explains how for the tenant user, the access to Kubernetes resources is 
 
 You can follow [this general guide](/docs/operating/setup/authentication/) to configure an OIDC authentication for Kubernetes.
 
-For a Keycloak specific setup yon can check [this resources list](/docs/operating/setup/authentication/#oidc).
+For a Keycloak specific setup you can check [this resources list](/docs/operating/setup/authentication/#oidc).
 
 #### Known issues
 

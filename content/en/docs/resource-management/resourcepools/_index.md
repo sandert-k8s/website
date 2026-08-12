@@ -238,7 +238,7 @@ Options that can be defined on a per-`ResourcePool` basis and influence the gene
 
 #### OrderedQueue
 
-When `ResourecePoolClaims` are allocated to a pool, they are placed in a queue. The pool attempts to allocate claims in the order of their [creation timestamps](#priority). However, even if a claim was created earlier, if it requests more resources than are currently available, it will remain in the queue. Meanwhile, a lower-priority claim that fits within the available resources may still be allocated, despite its lower priority.
+When `ResourcePoolClaims` are allocated to a pool, they are placed in a queue. The pool attempts to allocate claims in the order of their [creation timestamps](#priority). However, even if a claim was created earlier, if it requests more resources than are currently available, it will remain in the queue. Meanwhile, a lower-priority claim that fits within the available resources may still be allocated, despite its lower priority.
 
 Enabling this option enforces strict ordering: claims cannot be skipped, even if they block other claims from being fulfilled due to resource exhaustion. The `CreationTimestamp` is strictly respected, meaning that once a claim is queued, no subsequent claim can bypass it, even if it requires fewer resources.
 

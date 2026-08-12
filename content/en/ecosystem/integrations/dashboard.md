@@ -17,7 +17,7 @@ This guide describes how to integrate the [Kubernetes Dashboard](https://kuberne
 
 ## OIDC Authentication
 
-Your cluster must also be configured to use [OIDC Authentication](/docs/operating/setup/authentication#oidc) for seemless Kubernetes RBAC integration. In a such scenario, you should have in the kube-apiserver.yaml manifest the following content:
+Your cluster must also be configured to use [OIDC Authentication](/docs/operating/setup/authentication#oidc) for seamless Kubernetes RBAC integration. In a such scenario, you should have in the kube-apiserver.yaml manifest the following content:
 
 ```yaml
 spec:

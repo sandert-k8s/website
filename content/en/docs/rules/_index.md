@@ -1,6 +1,8 @@
 ---
 title: Rules
 weight: 5
+aliases:
+  - /docs/tenants/rules/
 description: >
   Configure policies and restrictions on a per-Namespace basis with Rules
 ---
