@@ -120,7 +120,7 @@ A minimal example tenant looks like the following:
 apiVersion: capsule.clastix.io/v1beta2
 kind: Tenant
 metadata:
-  name: sun
+  name: solar
 spec:
   imagePullPolicies:
     - Always
@@ -186,6 +186,32 @@ The following helm values can be used as a template:
 ```
 That is all the configuration needed for Capsule Proxy.
 
+### ProxyClusterScoped and OpenShift Projects
+
+If the `ProxyClusterScoped` feature gate is enabled (not used in the example above, but is is a option to enable), it is recommended to create a `GlobalProxySetting` for `Projects`. OpenShift `Projects` are the equivalent of Kubernetes `Namespaces`, and when `ProxyClusterScoped` is active they can no longer be listed by default.
+
+```yaml
+apiVersion: capsule.clastix.io/v1beta1
+kind: GlobalProxySettings
+metadata:
+  name: openshift-projects
+spec:
+  rules:
+  - subjects:
+    - kind: Group
+      name: oidc:org:devops:a
+    clusterResources:
+    - apiGroups:
+      - "project.openshift.io"
+      resources:
+      - "projects"
+      operations:
+      - List
+      selector:
+        matchLabels:
+            capsule.clastix.io/tenant: solar
+```
+
 ## Console Customization
 The OpenShift console can be customized. For example, the capsule-proxy can be added as a shortcut on the top right application menu with the `ConsoleLink` CR:
 ```yaml
@@ -206,10 +232,10 @@ It's also possible to add links specific for certain namespaces, which are shown
 apiVersion: console.openshift.io/v1
 kind: ConsoleLink
 metadata:
-  name: namespaced-consolelink-sun
+  name: namespaced-consolelink-solar
 spec:
-  text: "Sun Docs"
-  href: "https://linktothesundocs.com"
+  text: "solar Docs"
+  href: "https://linktothesolardocs.com"
   location: "NamespaceDashboard"
   namespaceDashboard:
     namespaceSelector:
@@ -217,7 +243,7 @@ spec:
         - key: capsule.clastix.io/tenant
           operator: In
           values:
-            - sun
+            - solar
 ```
 Also a custom logo can be provided, for example by adding the Capsule logo.
 
