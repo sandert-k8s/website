@@ -1,11 +1,10 @@
 ---
 title: Permissions
-weight: 5
+weight: 2
 description: >
   Configure policies and restrictions on a per-Tenant basis with Rules
-_build:
-  render: never
-  list: never
+aliases:
+  - /docs/tenants/rules/permissions/
 ---
 
 Declare permission distribution rules for the selected namespaces.
