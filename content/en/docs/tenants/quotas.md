@@ -1,6 +1,6 @@
 ---
 title: Quotas
-weight: 4
+weight: 999
 description: >
   Strategies on granting quotas on tenant-basis
 ---
@@ -58,7 +58,7 @@ spec:
 kind: ResourceQuota
 apiVersion: v1
 metadata:
-  name: capsule-oil-1
+  name: capsule-wind-1
   namespace: solar-production
   labels:
     tenant: solar
