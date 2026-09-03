@@ -562,6 +562,51 @@ resource.customizations.health.capsule.clastix.io_GlobalCustomQuota: |
   return hs
 ```
 
+### GlobalResourceQuota Resource Health
+
+Reports `Progressing` when initialization or reconciliation is in progress (e.g. `Ready` condition reason `Reconciling`), `Degraded` when the resource quota reconcile failed, and `Healthy` when usage has been successfully calculated across all selected namespaces.
+
+```yaml
+resource.customizations.health.capsule.clastix.io_GlobalResourceQuota: |
+  local hs = {}
+  if obj.status == nil or obj.status.conditions == nil then
+    hs.status = "Progressing"
+    hs.message = "Waiting for status"
+    return hs
+  end
+
+  if obj.metadata ~= nil and obj.metadata.generation ~= nil and obj.status.observedGeneration ~= nil
+      and obj.status.observedGeneration ~= obj.metadata.generation then
+    hs.status = "Progressing"
+    hs.message = "Waiting for reconciliation (generation mismatch)"
+    return hs
+  end
+
+  for _, condition in ipairs(obj.status.conditions) do
+    if condition.type == "Ready" then
+      if condition.status == "False" then
+        if condition.reason == "Reconciling" then
+          hs.status = "Progressing"
+          hs.message = condition.message
+          return hs
+        end
+        hs.status = "Degraded"
+        hs.message = condition.message
+        return hs
+      end
+      if condition.status == "True" then
+        hs.status = "Healthy"
+        hs.message = condition.message
+        return hs
+      end
+    end
+  end
+
+  hs.status = "Progressing"
+  hs.message = "Waiting for Ready condition"
+  return hs
+```
+
 ### TenantResource Resource Health
 
 Reports `Suspended` when the replication is cordoned (paused for maintenance). Reports `Degraded` when the replication of tenant-scoped resources failed, and `Healthy` when all resources have been successfully replicated into the target namespaces.
