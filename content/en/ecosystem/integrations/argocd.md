@@ -488,7 +488,7 @@ resource.customizations.health.capsule.clastix.io_ResourcePoolClaim: |
 
 ### CustomQuota Resource Health
 
-Reports `Degraded` when the quota reconcile failed (e.g. a matched resource has a missing field), and `Healthy` when usage has been successfully calculated for the namespace.
+Reports `Degraded` when the quota reconciliation failed (e.g. a matched resource has a missing field), and `Healthy` when usage has been successfully calculated for the namespace.
 
 ```yaml
 resource.customizations.health.capsule.clastix.io_CustomQuota: |
@@ -526,7 +526,7 @@ resource.customizations.health.capsule.clastix.io_CustomQuota: |
 
 ### GlobalCustomQuota Resource Health
 
-Reports `Degraded` when the quota reconcile failed, and `Healthy` when usage has been successfully calculated across all selected namespaces.
+Reports `Degraded` when the quota reconciliation failed, and `Healthy` when usage has been successfully calculated across all selected namespaces.
 
 ```yaml
 resource.customizations.health.capsule.clastix.io_GlobalCustomQuota: |
@@ -564,7 +564,7 @@ resource.customizations.health.capsule.clastix.io_GlobalCustomQuota: |
 
 ### GlobalResourceQuota Resource Health
 
-Reports `Progressing` when initialization or reconciliation is in progress (e.g. `Ready` condition reason `Reconciling`), `Degraded` when the resource quota reconcile failed, and `Healthy` when usage has been successfully calculated across all selected namespaces.
+Reports `Progressing` when initialization or reconciliation is in progress (e.g. `Ready` condition reason `Reconciling`), `Degraded` when the resource quota reconciliation failed, and `Healthy` when usage has been successfully calculated across all selected namespaces.
 
 ```yaml
 resource.customizations.health.capsule.clastix.io_GlobalResourceQuota: |
