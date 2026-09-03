@@ -584,7 +584,11 @@ resource.customizations.health.capsule.clastix.io_GlobalResourceQuota: |
 
   for _, condition in ipairs(obj.status.conditions) do
     if condition.type == "Ready" then
-      if condition.status == "False" then
+      if condition.status == "True" then
+        hs.status = "Healthy"
+        hs.message = condition.message
+        return hs
+      elseif condition.status == "False" then
         if condition.reason == "Reconciling" then
           hs.status = "Progressing"
           hs.message = condition.message
@@ -593,9 +597,8 @@ resource.customizations.health.capsule.clastix.io_GlobalResourceQuota: |
         hs.status = "Degraded"
         hs.message = condition.message
         return hs
-      end
-      if condition.status == "True" then
-        hs.status = "Healthy"
+      else
+        hs.status = "Progressing"
         hs.message = condition.message
         return hs
       end
